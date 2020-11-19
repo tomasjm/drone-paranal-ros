@@ -26,13 +26,18 @@ Es necesario instalar los siguientes paquetes
 - Configurar los repositorios de Ubuntu para permitir paquetes restrictivos : https://help.ubuntu.com/community/Repositories/Ubuntu
 
 #### 2.1. Agregar la lista de paquetes de ROS Melodic (sources.list)
+Se agrega la lista al archivo de sources.list:
 ```sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'```
+Se configura el keyserver:
 ```sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654```
 #### 2.2. Instalación
+Para instalar ROS se ejecutan los siguientes comandos
 ```
 sudo apt update
 sudo apt install ros-melodic-ros-base
 ```
+El paquete ```ros-melodic-ros-base``` es el más básico posible para la instalación en una raspberry o beaglebone, para otras opciones revisar la documentación de instalación de ROS en la distribución de Ubuntu. El paquete base no tiene aplicaciones GUI.
+
 #### 2.3. Configuración del entorno macro de ROS
 Es necesario agregar el ```setup.bash``` de Ros-melodic en los sources de la terminal utilizada, de esta manera, se tendrá siempre acceso a los comandos de ROS.
 ```
