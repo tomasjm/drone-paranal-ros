@@ -44,7 +44,7 @@ sudo make -j7 install
 
 ### 3. Configurar permisos
 - [x] Añadir usuario al grupo dialout ```sudo usermod -a -G dialout $ USER```
-- [x] Instalar libUSB ```sudo apt-get install libusb-1.0-0-dev
+- [x] Instalar libUSB ```sudo apt-get install libusb-1.0-0-dev```
 
 ## Ejecutar el SAMPLE
 ### Preparación previa
