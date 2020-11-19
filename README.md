@@ -28,8 +28,10 @@ Es necesario instalar los siguientes paquetes
 #### 2.1. Agregar la lista de paquetes de ROS Melodic (sources.list)
 Se agrega la lista al archivo de sources.list:
 ```sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'```
+
 Se configura el keyserver:
 ```sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654```
+
 #### 2.2. Instalación
 Para instalar ROS se ejecutan los siguientes comandos
 ```
