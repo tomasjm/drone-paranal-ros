@@ -17,9 +17,37 @@ Al ejecutar por primera vez la aplicación basada en OSDK, el desarrollador debe
 ## Configuración del entorno de desarrollo
 
 ### 1. Herramientas de desarrollo
+Es necesario instalar los siguientes paquetes 
 - [x] Compilador C (GCC)
 - [x] CMake
 - [x] Ros Toolchain
+
+### 2. Instalación de ROS Melodic en Ubuntu 18.04 LTS
+- Configurar los repositorios de Ubuntu para permitir paquetes restrictivos : https://help.ubuntu.com/community/Repositories/Ubuntu
+
+#### 2.1. Agregar la lista de paquetes de ROS Melodic (sources.list)
+```sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'```
+```sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654```
+#### 2.2. Instalación
+```
+sudo apt update
+sudo apt install ros-melodic-ros-base
+```
+#### 2.3. Configuración del entorno macro de ROS
+Es necesario agregar el ```setup.bash``` de Ros-melodic en los sources de la terminal utilizada, de esta manera, se tendrá siempre acceso a los comandos de ROS.
+```
+echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+#### 2.4. Instalación de dependencias de comandos de ROS
+```sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential```
+Para confirmar la instalación, ejecutar:
+```
+sudo rosdep init
+rosdep update
+```
+### 3. Inicializar Workspace de Catkin para trabajar con ROS
+ROS utiliza workspaces de Catkin para poder trabajar con su entorno, para inicializar un workspace, es necesario seguir los siguientes pasos:
 ```
 mkdir catkin_ws
 cd catkin_ws
@@ -27,12 +55,28 @@ mkdir src
 cd src
 catkin_init_workspace
 ```
+Si se ejecuta todo sin errores, el workspace se habrá creado correctamente, con esto funcionando, será necesario proceder a configurar e instalar el OnboardSDK del drone.
+ 
 
-### 2. Instalar software dependiente
+### 4. Configuración e instalación de OnboardSDK y OnboardSDK-ROS
 
-- [x] Clonar código fuente del repositorio OSDK-Ros en la carpeta ```src``` de ```catkin_ws``` : https://github.com/dji-sdk/Onboard-SDK-ROS
-- [x] Clonar código fuente de OSDK en la carpeta ```src``` de ```catkin_ws``` : https://github.com/dji-sdk/Onboard-SDK
-- [x] Realizar un build del código fuente de OSDK
+#### 4.1. OnboardSDK
+Es necesario clonar el código fuente del repositorio en la carpeta ```src``` de ```catkin_ws```.
+```
+cd ~/catkin_ws/src
+git clone https://github.com/dji-sdk/Onboard-SDK-ROS
+```
+Con esto se tendrá acceso al código del SDK, ahora es necesario compilar e instalar el SDK en el sistema.
+```
+cd ~/catkin_ws/src/Onboard-SDK
+mkdir build && cd build
+cmake ..
+sudo make -j7 install
+```
+
+-  Clonar código fuente del repositorio OSDK-Ros en la carpeta ```src``` de ```catkin_ws``` : https://github.com/dji-sdk/Onboard-SDK-ROS
+-  Clonar código fuente de OSDK en la carpeta ```src``` de ```catkin_ws``` : https://github.com/dji-sdk/Onboard-SDK
+-  Realizar un build del código fuente de OSDK
 ```
 cd catkin_ws/src/Onboard-SDK
 mkdir build && cd build
