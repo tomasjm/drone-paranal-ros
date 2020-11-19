@@ -64,7 +64,7 @@ Si se ejecuta todo sin errores, el workspace se habrá creado correctamente, con
 Es necesario clonar el código fuente del repositorio en la carpeta ```src``` de ```catkin_ws```.
 ```
 cd ~/catkin_ws/src
-git clone https://github.com/dji-sdk/Onboard-SDK-ROS
+git clone https://github.com/dji-sdk/Onboard-SDK
 ```
 Con esto se tendrá acceso al código del SDK, ahora es necesario compilar e instalar el SDK en el sistema.
 ```
@@ -73,22 +73,22 @@ mkdir build && cd build
 cmake ..
 sudo make -j7 install
 ```
-
--  Clonar código fuente del repositorio OSDK-Ros en la carpeta ```src``` de ```catkin_ws``` : https://github.com/dji-sdk/Onboard-SDK-ROS
--  Clonar código fuente de OSDK en la carpeta ```src``` de ```catkin_ws``` : https://github.com/dji-sdk/Onboard-SDK
--  Realizar un build del código fuente de OSDK
+#### 4.2. OnboardSDK-ROS
+Para este paso solo es necesario clonar el código fuente de OSDK-ROS en la carpeta ```src``` de ```catkin_ws```:
 ```
-cd catkin_ws/src/Onboard-SDK
-mkdir build && cd build
-cmake ..
-sudo make -j7 install
+cd ~/catkin_ws/src
+git clone https://github.com/dji-sdk/Onboard-SDK-ROS
 ```
-- [x] Instalar nmea comms utilizando ```sudo apt install ros-{release}-nmea-comms```, para obtener la versión de ros, utilizar ```echo $ROS_DISTRO```
-- [X] Instalar ffmpeg ```sudo apt-get install libavcodec-dev libswresample-dev```
+#### 4.3. Instalación de paquetes necesarios para la comunicación 
+-  Instalar nmea comms: 
+```sudo apt install ros-{release}-nmea-comms```
+Para obtener la versión de ros, utilizar ```echo $ROS_DISTRO```
+- Instalar ffmpeg ```sudo apt-get install libavcodec-dev libswresample-dev```
 
 ### 3. Configurar permisos
-- [x] Añadir usuario al grupo dialout ```sudo usermod -a -G dialout $ USER```
-- [x] Instalar libUSB ```sudo apt-get install libusb-1.0-0-dev```
+- Añadir usuario al grupo dialout ```sudo usermod -a -G dialout $ USER```
+-  Instalar libUSB si es que no existe para permitir la comunicación serial en el puerto ```ttyUSB0 (por defecto)```. 
+```sudo apt-get install libusb-1.0-0-dev```
 
 ## Ejecutar el SAMPLE
 ### Preparación previa
